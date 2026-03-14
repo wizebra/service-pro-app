@@ -226,3 +226,131 @@ body {
 
 .btn-cancel { background: #e2e8f0; color: var(--text-main); border: none; padding: 10px; border-radius: 6px; cursor: pointer; flex: 1; }
 .btn-submit { background: var(--primary); color: white; border: none; padding: 10px; border-radius: 6px; cursor: pointer; flex: 2; }
+
+/* services list section*/
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+#service-search {
+    padding: 10px;
+    width: 300px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+}
+
+.services-list {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+}
+
+.service-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.service-row:last-child { border-bottom: none; }
+
+.service-info { display: flex; flex-direction: column; }
+.service-info span { font-size: 0.8rem; color: #64748b; }
+
+.service-action { display: flex; align-items: center; gap: 20px; }
+.service-action .price { margin-bottom: 0; } /* Reset previous margin */
+.service-action .order-btn { width: auto; padding: 6px 15px; }
+
+/* Catalog Section Layout */
+.catalog-section {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    margin-top: 2rem;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap; /* Helps on mobile */
+    gap: 1rem;
+}
+
+#service-search {
+    padding: 12px 16px;
+    width: 300px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+#service-search:focus {
+    border-color: var(--primary);
+}
+
+/* The List Rows */
+.services-list {
+    border-top: 1px solid #f1f5f9;
+}
+
+.service-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 1rem;
+    border-bottom: 1px solid #f1f5f9;
+    transition: background 0.2s;
+}
+
+.service-row:hover {
+    background-color: #f8fafc;
+}
+
+.service-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.service-name {
+    font-weight: 600;
+    color: var(--secondary);
+}
+
+.service-category {
+    font-size: 0.75rem;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.service-action {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.price-tag {
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.order-btn-sm {
+    padding: 8px 16px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.85rem;
+}

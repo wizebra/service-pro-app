@@ -1,36 +1,56 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const modal = document.getElementById('order-modal');
-    const orderBtns = document.querySelectorAll('.order-btn');
-    const closeBtn = document.querySelector('.close-btn');
-    const cancelBtn = document.querySelector('.btn-cancel');
+    // 1. Your Data (This would eventually come from a Database)
+    const services = [
+        { id: 1, name: "SEO Technical Audit", category: "Marketing", price: "$199" },
+        { id: 2, name: "Landing Page Development", category: "Dev", price: "$499" },
+        { id: 3, name: "Performance Optimization", category: "Dev", price: "$299" },
+        { id: 4, name: "UI/UX Consultation", category: "Design", price: "$150" },
+        { id: 5, name: "Logo & Branding Kit", category: "Design", price: "$350" },
+        { id: 6, name: "Monthly Content Plan", category: "Content", price: "$400" }
+    ];
 
-    // Open Modal when any "Order Now" button is clicked
-    orderBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            modal.style.display = 'block';
-        });
-    });
+    const listContainer = document.getElementById('services-list');
+    const searchInput = document.getElementById('service-search');
 
-    // Close Modal functions
-    const closeModal = () => {
-        modal.style.display = 'none';
-    };
-
-    closeBtn.addEventListener('click', closeModal);
-    cancelBtn.addEventListener('click', closeModal);
-
-    // Close if user clicks outside the white box
-    window.addEventListener('click', (event) => {
-        if (event.target == modal) {
-            closeModal();
+    // 2. Function to Render the List
+    function renderServices(data) {
+        if (data.length === 0) {
+            listContainer.innerHTML = `<p style="padding: 2rem; text-align: center; color: #64748b;">No services found matching your search.</p>`;
+            return;
         }
+
+        listContainer.innerHTML = data.map(service => `
+            <div class="service-row">
+                <div class="service-info">
+                    <span class="service-category">${service.category}</span>
+                    <span class="service-name">${service.name}</span>
+                </div>
+                <div class="service-action">
+                    <span class="price-tag">${service.price}</span>
+                    <button class="order-btn-sm" onclick="openOrderModal('${service.name}')">Order</button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    // 3. Search Logic
+    searchInput.addEventListener('input', (e) => {
+        const term = e.target.value.toLowerCase();
+        const filtered = services.filter(s => 
+            s.name.toLowerCase().includes(term) || 
+            s.category.toLowerCase().includes(term)
+        );
+        renderServices(filtered);
     });
 
-    // Handle Form Submission
-    const orderForm = document.getElementById('order-form');
-    orderForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        alert('Order request received! Next step: Integrating a payment processor.');
-        closeModal();
-    });
+    // Initial Load
+    renderServices(services);
 });
+
+// 4. Modal Logic (Global function so the HTML can see it)
+function openOrderModal(serviceName) {
+    const modal = document.getElementById('order-modal');
+    // You could even auto-fill the form with the service name here!
+    console.log("Opening order for:", serviceName);
+    modal.style.display = 'block';
+}
