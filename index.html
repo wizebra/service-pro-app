@@ -107,6 +107,27 @@
         </main>
     </div>
 
+    <div id="order-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Complete Your Order</h2>
+                <span class="close-btn">&times;</span>
+            </div>
+            <form id="order-form">
+                <label>Project Details</label>
+                <textarea placeholder="Tell us about your needs..." required></textarea>
+                
+                <label>Target Deadline</label>
+                <input type="date" required>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn-cancel">Cancel</button>
+                    <button type="submit" class="btn-submit">Confirm & Pay</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>

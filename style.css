@@ -162,3 +162,67 @@ body {
 .order-btn:hover {
     background: #1d4ed8;
 }
+
+/* Modal Overlay */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    backdrop-filter: blur(4px);
+}
+
+/* Modal Box */
+.modal-content {
+    background-color: var(--white);
+    margin: 10% auto;
+    padding: 2rem;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.close-btn {
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #64748b;
+}
+
+#order-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#order-form label {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+#order-form input, #order-form textarea {
+    padding: 10px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    font-family: inherit;
+}
+
+.modal-footer {
+    display: flex;
+    gap: 10px;
+    margin-top: 1rem;
+}
+
+.btn-cancel { background: #e2e8f0; color: var(--text-main); border: none; padding: 10px; border-radius: 6px; cursor: pointer; flex: 1; }
+.btn-submit { background: var(--primary); color: white; border: none; padding: 10px; border-radius: 6px; cursor: pointer; flex: 2; }
