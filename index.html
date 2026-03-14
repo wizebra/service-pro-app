@@ -3,114 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ServicePro | Client Dashboard</title>
+    <title>ServicePro Dashboard</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="app-container">
+    <div class="dashboard-container">
         <aside class="sidebar">
-            <div class="brand">
-                <h2>ServicePro</h2>
-            </div>
-            <nav class="nav-menu">
-                <a href="#" class="nav-item active" data-page="overview">Dashboard</a>
-                <a href="#" class="nav-item" data-page="appointments">Appointments</a>
-                <a href="#" class="nav-item" data-page="orders">Orders & Services</a>
-                <a href="#" class="nav-item" data-page="billing">Billing</a>
+            <div class="logo">ServicePro</div>
+            <nav>
+                <ul>
+                    <li class="active"><a href="#">Dashboard</a></li>
+                    <li><a href="#">Orders</a></li>
+                    <li><a href="#">Messages</a></li>
+                    <li><a href="#">Settings</a></li>
+                </ul>
             </nav>
-            <div class="sidebar-footer">
-                <button class="btn-logout">Logout</button>
-            </div>
         </aside>
 
         <main class="main-content">
             <header class="top-bar">
-                <div class="search-box">
-                    <input type="text" placeholder="Search orders...">
-                </div>
+                <h1>Welcome Back, Pro</h1>
                 <div class="user-profile">
-                    <span>Welcome, <strong>John Doe</strong></span>
-                    <div class="avatar">JD</div>
+                    <span>Admin User</span>
+                    <div class="avatar"></div>
                 </div>
             </header>
 
             <div class="content-area">
-                <section class="welcome-banner">
-                    <h1>Dashboard Overview</h1>
-                    <p>Manage your services and upcoming appointments.</p>
-                </section>
-
                 <div class="stats-grid">
                     <div class="stat-card">
-                        <span class="stat-label">Next Appointment</span>
-                        <div class="stat-value">Oct 24, 10:00 AM</div>
-                        <span class="stat-sub">Consultation Call</span>
+                        <h3>Active Orders</h3>
+                        <p class="stat-number">12</p>
                     </div>
                     <div class="stat-card">
-                        <span class="stat-label">Active Orders</span>
-                        <div class="stat-value">02</div>
-                        <span class="stat-sub">In progress</span>
+                        <h3>Revenue</h3>
+                        <p class="stat-number">$4,250</p>
                     </div>
                     <div class="stat-card">
-                        <span class="stat-label">Total Balance</span>
-                        <div class="stat-value">$150.00</div>
-                        <a href="#" class="stat-link">Pay Invoice</a>
+                        <h3>Reviews</h3>
+                        <p class="stat-number">4.9/5</p>
                     </div>
                 </div>
 
                 <section class="catalog-section">
                     <div class="section-header">
-                        <h3>Full Service Catalog</h3>
-                        <input type="text" id="service-search" placeholder="Search for a service (e.g. 'SEO')...">
+                        <h3>Service Catalog</h3>
+                        <input type="text" id="service-search" placeholder="Search for a service...">
+                    </div>
+
+                    <div class="filter-tabs">
+                        <button class="filter-btn active" data-category="all">All</button>
+                        <button class="filter-btn" data-category="Dev">Development</button>
+                        <button class="filter-btn" data-category="Marketing">Marketing</button>
+                        <button class="filter-btn" data-category="Design">Design</button>
                     </div>
 
                     <div id="services-list" class="services-list">
-                    </div>
-                </section>
-
-                <!-- <section class="services-section">
-                    <h3>Available Services</h3>
-                    <div class="services-grid">
-                        <div class="service-card">
-                            <div class="service-icon">🔍</div>
-                            <h4>SEO Audit</h4>
-                            <p>A complete technical analysis of your website's search performance.</p>
-                            <span class="price">$199</span>
-                            <button class="order-btn">Order Now</button>
-                        </div>
-
-                        <div class="service-card">
-                            <div class="service-icon">💻</div>
-                            <h4>Web Development</h4>
-                            <p>Custom landing pages built with modern HTML, CSS, and JS.</p>
-                            <span class="price">$499</span>
-                            <button class="order-btn">Order Now</button>
-                        </div>
-
-                        <div class="service-card">
-                            <div class="service-icon">🚀</div>
-                            <h4>Speed Optimization</h4>
-                            <p>Make your site load instantly to improve user retention.</p>
-                            <span class="price">$299</span>
-                            <button class="order-btn">Order Now</button>
-                        </div>
-                    </div>
-                </section> -->
-
-                <section class="recent-activity">
-                    <h3>Recent Activity</h3>
-                    <div class="activity-table">
-                        <div class="table-header">
-                            <span>Service</span>
-                            <span>Date</span>
-                            <span>Status</span>
-                        </div>
-                        <div class="table-row">
-                            <span>Web Audit</span>
-                            <span>Oct 12, 2026</span>
-                            <span class="status-pill completed">Completed</span>
-                        </div>
                         </div>
                 </section>
             </div>
@@ -125,7 +74,7 @@
             </div>
             <form id="order-form">
                 <label>Project Details</label>
-                <textarea placeholder="Tell us about your needs..." required></textarea>
+                <textarea id="project-details" placeholder="Tell us about your needs..." required></textarea>
                 
                 <label>Target Deadline</label>
                 <input type="date" required>

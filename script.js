@@ -45,6 +45,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initial Load
     renderServices(services);
+
+    const filterBtns = document.querySelectorAll('.filter-btn');
+
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // 1. Update UI (Active state)
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            // 2. Filter Data
+            const category = btn.getAttribute('data-category');
+            if (category === 'all') {
+                renderServices(services);
+            } else {
+                const filtered = services.filter(s => s.category === category);
+                renderServices(filtered);
+            }
+        });
+    });
 });
 
 // 4. Modal Logic (Global function so the HTML can see it)
