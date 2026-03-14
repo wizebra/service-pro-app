@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ServicePro | Client Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="brand">
+                <h2>ServicePro</h2>
+            </div>
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active" data-page="overview">Dashboard</a>
+                <a href="#" class="nav-item" data-page="appointments">Appointments</a>
+                <a href="#" class="nav-item" data-page="orders">Orders & Services</a>
+                <a href="#" class="nav-item" data-page="billing">Billing</a>
+            </nav>
+            <div class="sidebar-footer">
+                <button class="btn-logout">Logout</button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="search-box">
+                    <input type="text" placeholder="Search orders...">
+                </div>
+                <div class="user-profile">
+                    <span>Welcome, <strong>John Doe</strong></span>
+                    <div class="avatar">JD</div>
+                </div>
+            </header>
+
+            <div class="content-area">
+                <section class="welcome-banner">
+                    <h1>Dashboard Overview</h1>
+                    <p>Manage your services and upcoming appointments.</p>
+                </section>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-label">Next Appointment</span>
+                        <div class="stat-value">Oct 24, 10:00 AM</div>
+                        <span class="stat-sub">Consultation Call</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">Active Orders</span>
+                        <div class="stat-value">02</div>
+                        <span class="stat-sub">In progress</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">Total Balance</span>
+                        <div class="stat-value">$150.00</div>
+                        <a href="#" class="stat-link">Pay Invoice</a>
+                    </div>
+                </div>
+
+                <section class="recent-activity">
+                    <h3>Recent Activity</h3>
+                    <div class="activity-table">
+                        <div class="table-header">
+                            <span>Service</span>
+                            <span>Date</span>
+                            <span>Status</span>
+                        </div>
+                        <div class="table-row">
+                            <span>Web Audit</span>
+                            <span>Oct 12, 2026</span>
+                            <span class="status-pill completed">Completed</span>
+                        </div>
+                        </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
