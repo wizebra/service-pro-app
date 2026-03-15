@@ -106,24 +106,46 @@ document.querySelector('.close-btn').onclick = closeModal;
 document.querySelector('.btn-cancel').onclick = closeModal;
 
 // Handle Form Submission
+// Inside your DOMContentLoaded or wherever your form logic lives
 const orderForm = document.getElementById('order-form');
-orderForm.addEventListener('submit', (e) => {
+
+orderForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    // 1. Get the data (for later use with a database)
-    const orderData = {
-        service: document.getElementById('selected-service-name').innerText,
-        details: document.getElementById('project-details').value,
-        deadline: document.getElementById('project-deadline').value
-    };
-    console.log("New Order Created:", orderData);
+    const selectedService = document.getElementById('selected-service-name').innerText;
+    const details = document.getElementById('project-details').value;
 
-    // 2. Hide form, show success message
-    document.getElementById('modal-form-container').style.display = 'none';
-    document.getElementById('modal-success-container').style.display = 'block';
+    // SEND TO SUPABASE
+    const { data, error } = await supabaseClient
+        .from('orders')
+        .insert([
+            { 
+                service_name: selectedService, 
+                client_details: details, 
+                status: 'pending' 
+            }
+        ]);
 
-    // 3. Update the Dashboard Stats (Bonus!)
-    const activeOrdersStat = document.querySelector('.stat-card:first-child .stat-number');
-    let currentCount = parseInt(activeOrdersStat.innerText);
-    activeOrdersStat.innerText = currentCount + 1;
+    if (error) {
+        console.error("Order failed:", error.message);
+        alert("Error placing order. Check console.");
+    } else {
+        // Show the success state in the modal
+        document.getElementById('modal-form-container').style.display = 'none';
+        document.getElementById('modal-success-container').style.display = 'block';
+        
+        // Refresh your dashboard stats!
+        updateDashboardStats();
+    }
 });
+
+async function updateDashboardStats() {
+    const { data: orders, error } = await supabaseClient
+        .from('orders')
+        .select('*');
+
+    if (!error && orders) {
+        const orderCountElement = document.querySelector('.stat-card:nth-child(1) .stat-number');
+        orderCountElement.innerText = orders.length;
+    }
+}
