@@ -1,13 +1,18 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. Your Data (This would eventually come from a Database)
-    const services = [
-    { id: 1, name: "SEO Technical Audit", category: "Marketing", price: "$199", badge: "Hot" },
-    { id: 2, name: "Landing Page Development", category: "Dev", price: "$499", badge: "Premium" },
-    { id: 3, name: "Performance Optimization", category: "Dev", price: "$299", badge: "" }, // No badge
-    { id: 4, name: "UI/UX Consultation", category: "Design", price: "$150", badge: "New" },
-    { id: 5, name: "Logo & Branding Kit", category: "Design", price: "$350", badge: "" },
-    { id: 6, name: "Monthly Content Plan", category: "Content", price: "$400", badge: "Popular" }
-];
+const SUPABASE_URL = 'https://zhhluxbsiyijtjbpfpec.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_xw4jItAyKIpylEOK4asQtA_yvlrgcV5';
+
+const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+document.addEventListener('DOMContentLoaded', async () => {
+    // 1. Fetch data from Supabase instead of a local array
+    const { data: services, error } = await supabase
+        .from('services')
+        .select('*');
+
+    if (error) {
+        console.error('Error fetching services:', error);
+        return;
+    }
 
     const listContainer = document.getElementById('services-list');
     const searchInput = document.getElementById('service-search');

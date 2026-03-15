@@ -49,17 +49,16 @@
                 <section class="catalog-section">
                     <div class="section-header">
                         <h3>Service Catalog</h3>
-                        <input type="text" id="service-search" placeholder="Search for a service...">
+                        <input type="text" id="service-search" placeholder="Search...">
                     </div>
 
                     <div class="filter-tabs">
                         <button class="filter-btn active" data-category="all">All</button>
-                        <button class="filter-btn" data-category="Dev">Development</button>
-                        <button class="filter-btn" data-category="Marketing">Marketing</button>
-                        <button class="filter-btn" data-category="Design">Design</button>
-                    </div>
+                        <button class="filter-btn" data-category="Dev">Dev</button>
+                        </div>
 
                     <div id="services-list" class="services-list">
+                        <p>Loading from Supabase...</p>
                     </div>
                 </section>
             </div>
@@ -96,6 +95,7 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="script.js"></script>
 </body>
 </html>
