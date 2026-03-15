@@ -149,3 +149,49 @@ async function updateDashboardStats() {
         orderCountElement.innerText = orders.length;
     }
 }
+
+const catalogSection = document.querySelector('.catalog-section');
+const ordersSection = document.getElementById('orders-section');
+const ordersLink = document.querySelector('a[href="#orders"]'); // Assuming your link is <a href="#orders">
+
+ordersLink.addEventListener('click', (e) => {
+    e.preventDefault(); // Stop the page from jumping
+    
+    // Switch visibility
+    catalogSection.style.display = 'none';
+    ordersSection.style.display = 'block';
+    
+    // Load the data!
+    loadOrders();
+});
+
+async function loadOrders() {
+    const ordersList = document.getElementById('orders-list');
+    
+    const { data: orders, error } = await supabaseClient
+        .from('orders')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+    if (error) {
+        ordersList.innerHTML = `<p>Error loading orders: ${error.message}</p>`;
+        return;
+    }
+
+    if (orders.length === 0) {
+        ordersList.innerHTML = `<p>No orders found yet. Time to go get some clients!</p>`;
+        return;
+    }
+
+    // Build the list
+    ordersList.innerHTML = orders.map(order => `
+        <div class="order-card" style="border: 1px solid #ddd; padding: 1rem; margin-bottom: 1rem; border-radius: 8px;">
+            <div style="display: flex; justify-content: space-between;">
+                <strong>${order.service_name}</strong>
+                <span class="status-badge">${order.status}</span>
+            </div>
+            <p style="font-size: 0.9rem; color: #666;">${order.client_details}</p>
+            <small>${new Date(order.created_at).toLocaleDateString()}</small>
+        </div>
+    `).join('');
+}
