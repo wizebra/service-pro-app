@@ -104,6 +104,23 @@
         </div>
     </div>
 
+    <div id="order-modal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <h3>Order: <span id="selected-service-name"></span></h3>
+            <p>Price: <span id="selected-service-price"></span></p>
+            
+            <form id="order-form">
+                <label>Project Details:</label>
+                <textarea id="project-details" placeholder="Describe what you need..." required></textarea>
+                
+                <div class="modal-actions">
+                    <button type="button" onclick="closeModal()">Cancel</button>
+                    <button type="submit">Confirm & Pay</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="script.js"></script>
 </body>

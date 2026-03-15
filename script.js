@@ -187,3 +187,13 @@ async function loadOrders() {
         </div>
     `).join('');
 }
+
+function openOrderModal(name, price) {
+    document.getElementById('selected-service-name').innerText = name;
+    document.getElementById('selected-service-price').innerText = price;
+    document.getElementById('order-modal').style.display = 'flex';
+}
+
+function closeModal() {
+    document.getElementById('order-modal').style.display = 'none';
+}
