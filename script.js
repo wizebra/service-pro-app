@@ -67,9 +67,53 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // 4. Modal Logic (Global function so the HTML can see it)
+// --- Modal Control Functions ---
+
 function openOrderModal(serviceName) {
     const modal = document.getElementById('order-modal');
-    // You could even auto-fill the form with the service name here!
-    console.log("Opening order for:", serviceName);
+    const formContainer = document.getElementById('modal-form-container');
+    const successContainer = document.getElementById('modal-success-container');
+    const titleSpan = document.getElementById('selected-service-name');
+
+    // Reset view to show form, hide success
+    formContainer.style.display = 'block';
+    successContainer.style.display = 'none';
+
+    // Set the specific service name in the title
+    titleSpan.innerText = serviceName;
+    
     modal.style.display = 'block';
 }
+
+function closeModal() {
+    document.getElementById('order-modal').style.display = 'none';
+}
+
+// --- Inside your DOMContentLoaded block ---
+
+// Close buttons logic
+document.querySelector('.close-btn').onclick = closeModal;
+document.querySelector('.btn-cancel').onclick = closeModal;
+
+// Handle Form Submission
+const orderForm = document.getElementById('order-form');
+orderForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    // 1. Get the data (for later use with a database)
+    const orderData = {
+        service: document.getElementById('selected-service-name').innerText,
+        details: document.getElementById('project-details').value,
+        deadline: document.getElementById('project-deadline').value
+    };
+    console.log("New Order Created:", orderData);
+
+    // 2. Hide form, show success message
+    document.getElementById('modal-form-container').style.display = 'none';
+    document.getElementById('modal-success-container').style.display = 'block';
+
+    // 3. Update the Dashboard Stats (Bonus!)
+    const activeOrdersStat = document.querySelector('.stat-card:first-child .stat-number');
+    let currentCount = parseInt(activeOrdersStat.innerText);
+    activeOrdersStat.innerText = currentCount + 1;
+});

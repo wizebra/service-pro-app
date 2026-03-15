@@ -60,7 +60,7 @@
                     </div>
 
                     <div id="services-list" class="services-list">
-                        </div>
+                    </div>
                 </section>
             </div>
         </main>
@@ -68,22 +68,31 @@
 
     <div id="order-modal" class="modal">
         <div class="modal-content">
-            <div class="modal-header">
-                <h2>Complete Your Order</h2>
-                <span class="close-btn">&times;</span>
-            </div>
-            <form id="order-form">
-                <label>Project Details</label>
-                <textarea id="project-details" placeholder="Tell us about your needs..." required></textarea>
-                
-                <label>Target Deadline</label>
-                <input type="date" required>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn-cancel">Cancel</button>
-                    <button type="submit" class="btn-submit">Confirm & Pay</button>
+            <div id="modal-form-container">
+                <div class="modal-header">
+                    <h2>Order: <span id="selected-service-name" style="color: var(--primary);">Service Name</span></h2>
+                    <span class="close-btn">&times;</span>
                 </div>
-            </form>
+                <form id="order-form">
+                    <label>Project Details</label>
+                    <textarea id="project-details" placeholder="Describe your specific needs for this project..." required></textarea>
+                    
+                    <label>Target Deadline</label>
+                    <input type="date" required id="project-deadline">
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn-cancel">Cancel</button>
+                        <button type="submit" class="btn-submit">Confirm & Pay</button>
+                    </div>
+                </form>
+            </div>
+
+            <div id="modal-success-container" style="display: none; text-align: center; padding: 2rem;">
+                <div style="font-size: 4rem; margin-bottom: 1rem;">✅</div>
+                <h2>Order Placed!</h2>
+                <p>Your request has been sent. Our team will contact you shortly.</p>
+                <button class="btn-submit" onclick="closeModal()" style="margin-top: 1.5rem;">Back to Dashboard</button>
+            </div>
         </div>
     </div>
 
