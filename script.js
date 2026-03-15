@@ -18,29 +18,21 @@ document.addEventListener('DOMContentLoaded', async () => {
     const searchInput = document.getElementById('service-search');
 
     // 2. Function to Render the List
-    function renderServices(data) {
-    listContainer.innerHTML = data.map(service => {
-        // Only create the badge HTML if the service has a badge value
-        const badgeHTML = service.badge 
-            ? `<span class="badge ${service.badge.toLowerCase()}">${service.badge}</span>` 
-            : '';
-
-        return `
-            <div class="service-row">
-                <div class="service-info">
-                    <span class="service-category">${service.category}</span>
-                    <div class="name-wrapper">
-                        <span class="service-name">${service.name}</span>
-                        ${badgeHTML}
-                    </div>
-                </div>
-                <div class="service-action">
-                    <span class="price-tag">${service.price}</span>
-                    <button class="order-btn-sm" onclick="openOrderModal('${service.name}')">Order</button>
-                </div>
+    function renderServices(services) {
+    const listContainer = document.getElementById('services-list');
+    
+    listContainer.innerHTML = services.map(s => `
+        <div class="service-row">
+            <div class="service-info">
+                <strong>${s.name}</strong>
+                <span class="category-tag">${s.category}</span>
             </div>
-        `;
-    }).join('');
+            <div class="service-price">${s.price}</div>
+            <button class="order-btn" onclick="openOrderModal('${s.name}', '${s.price}')">
+                Select
+            </button>
+        </div>
+    `).join('');
 }
 
     // 3. Search Logic
