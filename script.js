@@ -22,17 +22,18 @@ document.addEventListener('DOMContentLoaded', async () => {
     const listContainer = document.getElementById('services-list');
     
     listContainer.innerHTML = services.map(s => `
-        <div class="service-row">
-            <div class="service-info">
-                <strong>${s.name}</strong>
-                <span class="category-tag">${s.category}</span>
-            </div>
-            <div class="service-price">${s.price}</div>
-            <button class="order-btn" onclick="openOrderModal('${s.name}', '${s.price}')">
-                Select
-            </button>
+    <div class="service-row">
+        <div class="service-main-info">
+            <span class="service-name">${s.name}</span>
+            <span class="service-price">${s.price}</span>
+            <span class="category-tag">${s.category}</span>
         </div>
-    `).join('');
+
+        <button class="order-btn" onclick="openOrderModal('${s.name}', '${s.price}')">
+            Select
+        </button>
+    </div>
+`).join('');
 }
 
     // 3. Search Logic
