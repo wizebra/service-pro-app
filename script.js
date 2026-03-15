@@ -1,37 +1,42 @@
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Your Data (This would eventually come from a Database)
     const services = [
-        { id: 1, name: "SEO Technical Audit", category: "Marketing", price: "$199" },
-        { id: 2, name: "Landing Page Development", category: "Dev", price: "$499" },
-        { id: 3, name: "Performance Optimization", category: "Dev", price: "$299" },
-        { id: 4, name: "UI/UX Consultation", category: "Design", price: "$150" },
-        { id: 5, name: "Logo & Branding Kit", category: "Design", price: "$350" },
-        { id: 6, name: "Monthly Content Plan", category: "Content", price: "$400" }
-    ];
+    { id: 1, name: "SEO Technical Audit", category: "Marketing", price: "$199", badge: "Hot" },
+    { id: 2, name: "Landing Page Development", category: "Dev", price: "$499", badge: "Premium" },
+    { id: 3, name: "Performance Optimization", category: "Dev", price: "$299", badge: "" }, // No badge
+    { id: 4, name: "UI/UX Consultation", category: "Design", price: "$150", badge: "New" },
+    { id: 5, name: "Logo & Branding Kit", category: "Design", price: "$350", badge: "" },
+    { id: 6, name: "Monthly Content Plan", category: "Content", price: "$400", badge: "Popular" }
+];
 
     const listContainer = document.getElementById('services-list');
     const searchInput = document.getElementById('service-search');
 
     // 2. Function to Render the List
     function renderServices(data) {
-        if (data.length === 0) {
-            listContainer.innerHTML = `<p style="padding: 2rem; text-align: center; color: #64748b;">No services found matching your search.</p>`;
-            return;
-        }
+    listContainer.innerHTML = data.map(service => {
+        // Only create the badge HTML if the service has a badge value
+        const badgeHTML = service.badge 
+            ? `<span class="badge ${service.badge.toLowerCase()}">${service.badge}</span>` 
+            : '';
 
-        listContainer.innerHTML = data.map(service => `
+        return `
             <div class="service-row">
                 <div class="service-info">
                     <span class="service-category">${service.category}</span>
-                    <span class="service-name">${service.name}</span>
+                    <div class="name-wrapper">
+                        <span class="service-name">${service.name}</span>
+                        ${badgeHTML}
+                    </div>
                 </div>
                 <div class="service-action">
                     <span class="price-tag">${service.price}</span>
                     <button class="order-btn-sm" onclick="openOrderModal('${service.name}')">Order</button>
                 </div>
             </div>
-        `).join('');
-    }
+        `;
+    }).join('');
+}
 
     // 3. Search Logic
     searchInput.addEventListener('input', (e) => {
