@@ -1,11 +1,11 @@
 const SUPABASE_URL = 'https://zhhluxbsiyijtjbpfpec.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_xw4jItAyKIpylEOK4asQtA_yvlrgcV5';
 
-const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 document.addEventListener('DOMContentLoaded', async () => {
     // 1. Fetch data from Supabase instead of a local array
-    const { data: services, error } = await supabase
+    const { data: services, error } = await supabaseClient
         .from('services')
         .select('*');
 
